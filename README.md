@@ -5,6 +5,7 @@ Notes
 -----------------------------------------
 
 This are my note
-
-##To print 
+```python
+To print 
 	print("hello")
+```
