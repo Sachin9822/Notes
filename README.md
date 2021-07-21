@@ -3,7 +3,7 @@ Python
 
 -----------------------------------------
 
-* to take arguments in python 
+To take arguments in python 
 =========================
 ```python
 import sys 
