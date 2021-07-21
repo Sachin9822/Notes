@@ -1,11 +1,10 @@
-Notes 
-
+Python 
 > Sachin Padwalkar | 21-07-2021
 
 -----------------------------------------
 
-This are my note
+to take arguments in python 
 ```python
-To print 
-	print("hello")
+import sys 
+ 1st_argument = sys.argv[1]
 ```
