@@ -4,4 +4,7 @@ Notes
 
 -----------------------------------------
 
-This are my notes
+This are my note
+
+##To print 
+	print("hello")
