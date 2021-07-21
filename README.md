@@ -3,7 +3,8 @@ Python
 
 -----------------------------------------
 
-to take arguments in python 
+* to take arguments in python 
+=========================
 ```python
 import sys 
  1st_argument = sys.argv[1]
