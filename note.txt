@@ -1,2 +1,0 @@
-To print in python 
-	print("hello ")
