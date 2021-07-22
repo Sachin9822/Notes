@@ -17,13 +17,13 @@ To open
 with open("filename","r") as f:
 ```
 if you use `with` then you dont have to use `close()`
-mode | Description
---- | --- | ---
-r | open file to read  
-w | open file to write it will create a new file if it dosen't exist
-x | To create a new file 
-a | open to append in the file 
-t | open in text mode (basically everything)
-b | open in binary mode
-+ | open file for updating
+| mode | Description |
+| --- | --- |
+| r | open file to read  |
+| w | open file to write it will create a new file if it dosen't exist |
+| x | To create a new file |
+| a | open to append in the file  |
+| t | open in text mode (basically everything) |
+| b | open in binary mode |
+| + | open file for updating |
 
