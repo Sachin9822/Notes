@@ -10,3 +10,10 @@ To take arguments in python
 import sys 
  1st_argument = sys.argv[1]
 ```
+Files in python 
+---------------
+...To open
+```python
+with open("filename","r") as f:
+```
+
