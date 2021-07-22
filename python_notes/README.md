@@ -27,3 +27,7 @@ if you use `with` then you dont have to use `close()`
 | b | open in binary mode |
 | + | open file for updating |
 
+Convertion of Ascii
+------------------
+	`[ord()]` to convert ascii to text
+	`[chr()]` to convert text to ascii 
