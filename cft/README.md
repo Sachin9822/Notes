@@ -8,8 +8,8 @@ General Skills
 | --- | --- |
 | `strings` | to find readable txt in file |
 | `exiftool` | show you more info about the file | 
-| xxd | dumps data in hexadecimal format | 
-| binwalk | searches for embedded files and executable code | 
+| `xxd` | dumps data in hexadecimal format | 
+| `binwalk` | searches for embedded files and executable code | 
 
 Decoding and encoding
 --------------
