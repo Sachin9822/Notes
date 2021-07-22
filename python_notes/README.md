@@ -29,5 +29,5 @@ if you use `with` then you dont have to use `close()`
 
 Convertion of Ascii
 ------------------
-	`[ord()]` to convert ascii to text
-	`[chr()]` to convert text to ascii 
+	`ord()` to convert ascii to text
+	`chr()` to convert text to ascii 
