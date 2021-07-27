@@ -29,6 +29,6 @@ if you use `with` then you dont have to use `close()`
 
 Convertion of Ascii
 ------------------
-`ord()` to convert ascii to text
-`chr()` to convert text to ascii 
-`hex()` to convert to hex 
+`ord()` to convert ascii to text <br/>
+`chr()` to convert text to ascii <br/>
+`hex()` to convert to hex   <br/>
