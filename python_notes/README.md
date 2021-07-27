@@ -31,3 +31,4 @@ Convertion of Ascii
 ------------------
 `ord()` to convert ascii to text
 `chr()` to convert text to ascii 
+`hex()` to convert to hex 
