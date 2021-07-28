@@ -4,6 +4,7 @@ Python
 
 -----------------------------------------
 
+
 Array 
 ----
 use `array[:-1]` to remove the last element
@@ -11,7 +12,7 @@ use `array[:-1]` to remove the last element
 use `array[::-1]` to reverse the string
 
 `list[<start>:<stop>:<step>]`
-    
+
 To take arguments in python 
 ---------------------------
 ```python
@@ -54,5 +55,32 @@ from pwn import *
 | r = remote('link','port') | to establish connection |
 | r.recvuntil("STRING") | run until we get that string from the server | 
 | r.send | send the input to the server | 
-
 | r.recvline() | to get the text from the line |
+
+
+re Module 
+-----
+
+To search text 
+```python3
+import re
+
+m = re.search(r"HTB{.*?}",TEXT)
+print(m.group()) // to print
+```
+
+requests Module
+----
+
+Get request
+```python3
+import requests
+
+r = requests.get("{URL}")
+
+# to pass params
+r = requests.get("{URL}", params= {
+    "VARIABLE" : "VALUES",
+    })
+
+```

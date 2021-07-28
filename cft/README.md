@@ -22,3 +22,13 @@ encode
 echo Txt_to_encode | base64
 ```
 
+RSA Decoding 
+-----
+`n` is modulas
+`p` and `q` are prime factors of `n`
+`c` is chipher 
+`phi = (q - 1) * (p - 1)`
+
+`d = 1/e mod phi ` use python Crypto.Util.number inverse(e,phi)
+
+`decrypted message = pow(c,d,phi)`
