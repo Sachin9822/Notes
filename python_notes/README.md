@@ -84,3 +84,15 @@ r = requests.get("{URL}", params= {
     })
 
 ```
+
+Crypto Module 
+------
+
+To use inverse and long_to_bytes 
+```python3
+from Crypto.Util.number import inverse, long_to_bytes
+
+a = inverse(2,7) # inverse of 2 then mod 7
+b = long_to_bytes(312879247182346) # this will convert it to string bytes
+
+```
