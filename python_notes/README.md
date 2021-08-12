@@ -4,14 +4,26 @@ Python
 
 -----------------------------------------
 
+Note
+-------
+when the length of variable exceed it will go to the start of the varaible
 
-Array 
-----
+`:=` is same as `=`
+`-~x` increments the value of x
+`-~-x` decrements the value of x
+
+Array and list
+------------
 use `array[:-1]` to remove the last element
 
 use `array[::-1]` to reverse the string
 
 `list[<start>:<stop>:<step>]`
+
+to print in hexadecimal format use 
+```python
+result = "{:02x}".format(a+b)
+```
 
 To take arguments in python 
 ---------------------------
@@ -78,6 +90,8 @@ import requests
 
 r = requests.get("{URL}")
 
+s = requests.Session() # this will create a session
+
 # to pass params
 r = requests.get("{URL}", params= {
     "VARIABLE" : "VALUES",
@@ -96,3 +110,16 @@ a = inverse(2,7) # inverse of 2 then mod 7
 b = long_to_bytes(312879247182346) # this will convert it to string bytes
 
 ```
+
+
+libnum module
+------
+`n2s` converts number to strings
+`s2n` converts string to number 
+
+Gmpy2 module
+------
+It is useful when you are working with large numbers
+
+use `gmpy.iroot(9,2)` which is equivalent to 9^1/2
+It returns to value first is the number and second boolean (true if it is perfect root)
