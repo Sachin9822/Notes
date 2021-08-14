@@ -40,7 +40,7 @@ echo Txt_to_encode | base64
 RSA Decoding 
 -----
 
-**formula => c = m^e mod n** \n
+  **formula => c = m^e mod n** 
 if c = m x e is small therfore we can bruteforce it 
 
 `n` is modulas
