@@ -5,8 +5,8 @@ CFT
 
 Web
 ----
-	`cewl` is a cool tool to create a wordlist
-	[hookbin](https://hookbin.com/) to send http response
+`cewl` is a cool tool to create a wordlist
+[hookbin](https://hookbin.com/) to send http response
 	
 
 
