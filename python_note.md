@@ -120,7 +120,7 @@ libnum module
 Gmpy2 module
 ------
 **do this before installation**
-```bash
+```bash 
 sudo apt install libmpc-dev
 ```
 It is useful when you are working with large numbers
