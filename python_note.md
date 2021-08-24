@@ -119,6 +119,10 @@ libnum module
 
 Gmpy2 module
 ------
+**do this before installation**
+```bash
+sudo apt install libmpc-dev
+```
 It is useful when you are working with large numbers
 
 use `gmpy.iroot(9,2)` which is equivalent to 9^1/2
