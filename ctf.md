@@ -40,6 +40,12 @@ echo Txt_to_encode | base64
 RSA Decoding 
 -----
 
+if `d` is small then we can use **wiener attack**
+Use this [owiener](https://github.com/orisano/owiener) to find d 
+due to small value of `d`  
+`d = phi`
+
+
 **formula => c = m^e mod n**  
 if c = m x e is small therfore we can bruteforce it 
 
