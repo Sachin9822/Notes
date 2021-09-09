@@ -54,6 +54,9 @@ Convertion
 `chr()` to convert text to ascii <br/>
 `hex()` to convert to hex   <br/>
 `bytearray.fromhex(HEX_VALUE)` to convert hex to string<br/>
+to convert from x01/ to hex   
+`"Message: {}".format(bytearray.fromhex(format(m,'x')).decode())`  
+
 
 PWNTOOLS 
 -----
@@ -109,12 +112,13 @@ from Crypto.Util.number import inverse, long_to_bytes
 a = inverse(2,7) # inverse of 2 then mod 7
 b = long_to_bytes(312879247182346) # this will convert it to string bytes
 
+
 ```
 
 
 libnum module
 ------
-`n2s` converts number to strings
+`n2s` converts number to strings    
 `s2n` converts string to number 
 
 Gmpy2 module
@@ -125,5 +129,5 @@ sudo apt install libmpc-dev
 ```
 It is useful when you are working with large numbers
 
-use `gmpy.iroot(9,2)` which is equivalent to 9^1/2
+use `gmpy.iroot(9,2)` which is equivalent to 9^1/2  
 It returns to value first is the number and second boolean (true if it is perfect root)

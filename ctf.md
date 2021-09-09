@@ -24,6 +24,9 @@ General Skills
 Forensics
 -----
 use **olevba** to find hidden macros
+use `ar -x file.deb` to extract deb files
+
+To get the sent file on wireshark use `File > Export Objects >`
 
 
 Decoding and encoding
@@ -58,5 +61,7 @@ use factordb.com to find p and q
 
 `d = 1/e mod phi ` use python Crypto.Util.number inverse(e,phi)
 
-`decrypted message = pow(c,d,phi)`
+`decrypted message = pow(c,d,phi)`  
 
+
+`encypt(m1) * encrypt(m2) = encrypt(m1 * m2)`
