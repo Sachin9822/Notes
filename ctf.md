@@ -2,6 +2,8 @@ CFT
 > Sachin Padwalkar | 22-07-2021
 ------------------------
 
+scrcpy --
+
 
 Web
 ----
@@ -25,7 +27,6 @@ Forensics
 -----
 use **olevba** to find hidden macros
 use `ar -x file.deb` to extract deb files
-
 To get the sent file on wireshark use `File > Export Objects >`
 
 
