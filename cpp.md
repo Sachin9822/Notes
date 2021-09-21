@@ -15,9 +15,9 @@ reverse(p.begin(),p.end());
 string s = "Sachin";
 s.erase(s.begin() + 3) // Output: Sahin
 ````
-`tolower()` - converts to lowecase ascii 
-`toupper()` - converts to uppercase ascii
-`tolower(chr,locale()) ` - converts to lowecase char
+`tolower()` - converts to lowecase ascii  
+`toupper()` - converts to uppercase ascii  
+`tolower(chr,locale()) ` - converts to lowecase char  
 
 * Square root in c++
 ````c++
