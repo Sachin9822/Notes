@@ -2,6 +2,11 @@
 
 > Sachin Padwalkar | 13-9-21
 -------------------------
+## Table of contents
+- [Bubble Sort](https://github.com/Sachin9822/Notes/blob/master/cpp.md#bubble-sort)
+- [Stack](https://github.com/Sachin9822/Notes/blob/master/cpp.md#stack)
+
+---------------------------------------------------------------------
 
 * To reverse a string:
 ````c++
@@ -17,7 +22,7 @@ s.erase(s.begin() + 3) // Output: Sahin
 ````
 `tolower()` - converts to lowecase ascii  
 
-`toupper()` - converts to uppercase ascii  
+`toupper()` - converts to uppercase ascii   
 
 `tolower(chr,locale()) ` - converts to lowecase char  
 
