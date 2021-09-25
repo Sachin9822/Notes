@@ -5,10 +5,7 @@
 ## Table of contents
 - [Bubble Sort](https://github.com/Sachin9822/Notes/blob/master/cpp.md#bubble-sort)
 - [Stack](https://github.com/Sachin9822/Notes/blob/master/cpp.md#stack)
-<<<<<<< HEAD
 - [Programe to check matching parenthesis](https://github.com/Sachin9822/Notes/blob/master/cpp.md#MatchingParenthesis)
-=======
->>>>>>> 83169f214e5a189c1c45d6b4e607922c2197fe30
 
 ---------------------------------------------------------------------
 
@@ -162,7 +159,7 @@ int main(){
 	return 0;
 }
 ```
-<<<<<<< HEAD
+
 
 ## Matching Parenthesis
 ```c++
@@ -266,5 +263,4 @@ int main(){
 }
 ```
 
-=======
->>>>>>> 83169f214e5a189c1c45d6b4e607922c2197fe30
+
