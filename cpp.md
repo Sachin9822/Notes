@@ -6,6 +6,7 @@
 - [Bubble Sort](https://github.com/Sachin9822/Notes/blob/master/cpp.md#bubble-sort)
 - [Stack](https://github.com/Sachin9822/Notes/blob/master/cpp.md#stack)
 - [Programe to check matching parenthesis](https://github.com/Sachin9822/Notes/blob/master/cpp.md#matching-parenthesis)
+- [Inflix to Postflix conversion](https://github.com/Sachin9822/Notes/blob/master/cpp.md#inflix-to-postflix)
 
 ---------------------------------------------------------------------
 
@@ -263,4 +264,113 @@ int main(){
 }
 ```
 
+## Inflix to Postflix
+```c++
+#include <iostream>
+#include <bits/stdc++.h>
 
+using namespace std;
+const int Max = 1000;
+class inflix_2_postflix{
+	char output[Max];
+	char simple_stack[Max];
+	int top,top1;
+	bool incorrect;
+	string user_input;
+	string opening_brackets;
+	string closing_brackets;
+	string operators;
+public: 
+	inflix_2_postflix(){
+		opening_brackets = "({[";
+		closing_brackets = ")}]";
+		operators = "+-/*^";
+		top = -1;
+		top1 = -1;
+		incorrect = false;
+	}
+	void input_data();
+	void parenthesis(char input);
+	int signs(char input);
+	void convert();
+};
+inflix_2_postflix ip;
+
+void inflix_2_postflix::parenthesis(char input){
+
+	for(int i = 0 ; i<3;i++){
+		if(input == opening_brackets[i]){
+			top += 1;
+			simple_stack[top] = input;
+			break;
+		}
+		else if(input == closing_brackets[i]){
+			if(top > -1){
+				top +=1;
+				simple_stack[top] = input;
+				top -=1;
+
+				for(int z = top; z>-1;z--){
+					if(simple_stack[z]==opening_brackets[i]){
+						top -=1;
+						break;
+					}
+					else{
+						top -=1;
+						top1 +=1;
+						output[top1] = simple_stack[z];
+						
+					}
+				}
+
+			}
+			else{
+				cout<<"Invalid Expression \n";
+				incorrect = true;
+				break;
+			}
+		}
+		else if(signs(input)){
+			top += 1;
+			simple_stack[top] = input;
+			break;
+		}
+		else{
+			if(input != ')'){
+			top1 += 1;
+				output[top1] = input;
+			}
+			break;
+		}
+	}
+}
+int inflix_2_postflix::signs(char input){
+	for(int i = 0 ; i<5;i++){
+		if(input == operators[i]){
+			return 1;
+		}
+	}
+	return 0;
+}
+void inflix_2_postflix::input_data(){
+	cout<<"Enter the Expression: \n";
+	// user_input = "(((A-(B+C)*D)^(E+F))";
+
+	cin>>user_input;
+}
+void inflix_2_postflix::convert(){
+	for(int i = 0; i<user_input.length();i++){
+		ip.parenthesis(user_input[i]);
+	}
+	if(!incorrect)
+	cout<<"Postflix : "<<output<<endl;
+	
+}
+
+
+int main(){
+	ip.input_data();
+	ip.convert();
+	return 0;
+}
+```
