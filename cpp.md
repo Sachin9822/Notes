@@ -272,7 +272,7 @@ int main(){
 using namespace std;
 const int Max = 1000;
 class inflix_2_postflix{
-	char Preflix[Max];
+	char Postflix[Max];
 	char simple_stack[Max];
 	int top,top1;
 	bool incorrect;
@@ -312,8 +312,7 @@ void inflix_2_postflix::parenthesis(char input){
 
 	for(int i = 0 ; i<3;i++){
 		if(input == opening_brackets[i]){
-			top += 1;
-			simple_stack[top] = input;
+			simple_stack[++top] = input;
 			break;
 		}
 		else if(input == closing_brackets[i]){
@@ -327,8 +326,8 @@ void inflix_2_postflix::parenthesis(char input){
 					}
 					else{
 						top -=1;
-						top1 +=1;
-						Preflix[top1] = simple_stack[z];
+						
+						Postflix[++top1] = simple_stack[z];
 						
 					}
 				}
@@ -342,11 +341,10 @@ void inflix_2_postflix::parenthesis(char input){
 		}
 		else if(signs(input)){
 			if(precedence(simple_stack[top]) < precedence(input)){
-			top += 1;
-			simple_stack[top] = input;
+			simple_stack[++top] = input;
 			}
 			else{
-				Preflix[++top1] = simple_stack[top--];
+				Postflix[++top1] = simple_stack[top--];
 				simple_stack[++top] = input;
 
 			}
@@ -354,9 +352,7 @@ void inflix_2_postflix::parenthesis(char input){
 		}
 		else{
 			if(input != ')'){
-
-			top1 += 1;
-			Preflix[top1] = input;
+			Postflix[++top1] = input;
 			}
 			break;
 		}
@@ -374,13 +370,13 @@ void inflix_2_postflix::input_data(){
 	cout<<"Enter the Expression: \n";
 	// user_input = "A^B*C–D+E/F/(G+H)";
 	// user_input = "((A+B)*C–(D–E))^(F+G)";
-	// user_input = "A–B/(C*D^E)";
+	user_input = "A–B/(C*D^E)";
 	// user_input = "(a+b^c^d)*(e+f/d))";
 	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
 	// user_input = "(A – B) / ((D + E) * F)";
 	// user_input = "((A + B) / D) ^((E – F) * G)";
 
-	cin>>user_input;
+	// cin>>user_input;
 }
 void inflix_2_postflix::convert(){
 	for(int i = 0; i<user_input.length();i++){
@@ -388,18 +384,151 @@ void inflix_2_postflix::convert(){
 		
 	}
 	if(!incorrect){
-	cout<<"Postflix : ";
-	cout<<Preflix;
-	for(int j = top;j>-1;j--){
-		cout<<simple_stack[j];
-	}
-	cout<<endl;
-	}
-
-
-	
+		cout<<"Postflix : ";
+		cout<<Postflix;
+		for(int j = top;j>-1;j--){
+			cout<<simple_stack[j];
+		}
+		cout<<endl;
+	}	
 }
 
+int main(){
+	ip.input_data();
+	ip.convert();
+	return 0;
+}
+```
+
+## Inflix to Preflix
+```c++
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+const int Max = 1000;
+class inflix_2_postflix{
+	char Preflix[Max];
+	char simple_stack[Max];
+	int top,top1;
+	bool incorrect;
+	string user_input;
+	string opening_brackets;
+	string closing_brackets;
+	string operators;
+public: 
+	inflix_2_postflix(){
+		closing_brackets = "({[";
+		opening_brackets = ")}]";
+		operators = "+-/*^";
+		top = -1;
+		top1 = -1;
+		incorrect = false;
+	}
+	void input_data();
+	void parenthesis(char input);
+	int signs(char input);
+	void convert();
+	int precedence(char operato);
+};
+inflix_2_postflix ip;
+
+int inflix_2_postflix::precedence(char operato){
+	if(operato == '^')
+		return 3;
+	else if (operato == '*' || operato == '/')
+		return 2;
+	else if (operato == '+' || operato == '-')
+		return 1;
+	else{
+		return 0;
+	}
+}
+void inflix_2_postflix::parenthesis(char input){
+	for(int i = 0 ; i<3;i++){
+		if(input == opening_brackets[i]){
+			simple_stack[++top] = input;
+			break;
+		}
+		else if(input == closing_brackets[i]){
+			if(top > -1){
+// (+
+
+				for(int z = top; z>-1;z--){
+					if(simple_stack[z]==opening_brackets[i]){
+						top -=1;
+						break;
+					}
+					else{
+						top -=1;
+						
+						Preflix[++top1] = simple_stack[z];
+						
+					}
+				}
+
+			}
+			else{
+				cout<<"Invalid Expression \n";
+				incorrect = true;
+				break;
+			}
+		}
+		else if(signs(input)){
+			if(precedence(simple_stack[top]) < precedence(input)){
+			simple_stack[++top] = input;
+			}
+			else{
+				Preflix[++top1] = simple_stack[top--];
+				simple_stack[++top] = input;
+
+			}
+			break;
+		}
+		else{
+			if(input != '('){
+			Preflix[++top1] = input;
+			}
+			break;
+		}
+	}
+}
+int inflix_2_postflix::signs(char input){
+	for(int i = 0 ; i<5;i++){
+		if(input == operators[i]){
+			return 1;
+		}
+	}
+	return 0;
+}
+void inflix_2_postflix::input_data(){
+	cout<<"Enter the Expression: \n";
+	// user_input = "A^B*C–D+E/F/(G+H)";
+	// user_input = "((A+B)*C–(D–E))^(F+G)";
+	user_input = "A-B/(C*D^E)";
+	// user_input = "(a+b^c^d)*(e+f/d))";
+	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
+	user_input = "(A–B)/((D+E)*F)";
+	// user_input = "((A + B) / D) ^((E – F) * G)";
+
+	// cin>>user_input;
+}
+void inflix_2_postflix::convert(){
+	for(int i =user_input.length()-1; i>-1;i--){
+		ip.parenthesis(user_input[i]);
+		
+	}
+	if(!incorrect){
+		cout<<"Preflix : ";
+		for(int j = top;j>-1;j--){
+			cout<<simple_stack[j];
+		}
+		for(int i =top1;i>-1;i--){
+			cout<<Preflix[i];
+		}
+		cout<<endl;
+	}	
+}
 
 int main(){
 	ip.input_data();
