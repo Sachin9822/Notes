@@ -4,9 +4,11 @@
 -------------------------
 ## Table of contents
 - [Bubble Sort](https://github.com/Sachin9822/Notes/blob/master/cpp.md#bubble-sort)
+- [Selection Sort](https://github.com/Sachin9822/Notes/blob/master/cpp.md#selection-sort)
 - [Stack](https://github.com/Sachin9822/Notes/blob/master/cpp.md#stack)
 - [Programe to check matching parenthesis](https://github.com/Sachin9822/Notes/blob/master/cpp.md#matching-parenthesis)
 - [Inflix to Postflix conversion](https://github.com/Sachin9822/Notes/blob/master/cpp.md#inflix-to-postflix)
+- [Inflix to Preflix conversion](https://github.com/Sachin9822/Notes/blob/master/cpp.md#inflix-to-preflix)
 
 ---------------------------------------------------------------------
 
@@ -155,6 +157,79 @@ void bubble_sorting::sort(){
 int main(){
 	bubble_sorting s;
 	s.input();
+	s.sort();
+	s.display();
+	return 0;
+}
+```
+## Selection Sort
+```c++
+#include <iostream>
+
+using namespace std;
+const int Max = 10;
+class selection_sort{
+	int arr[Max] ;
+	int smallest;
+	int n;
+public:
+	// selection_sort(){
+	// 	arr[Max] = {1,2,3,4,5,6,7,8,9,0};
+	// }
+	
+	void input_data();
+	void sort();
+	void insert(int position,int location);
+	void display();
+};
+
+selection_sort s;
+/* 1 3 5 2 4
+   0 1 2 3 4
+   position = 3
+   location = 1
+   store arr[position]
+   2 1 
+   3 2
+*/
+void selection_sort::insert(int position,int location){
+	int temp;
+	temp = arr[position];
+	for(int i = position; i>=location;i--){
+		arr[i] = arr[i-1];
+	}
+	arr[location] = temp;
+}
+
+void selection_sort::input_data(){
+	cout<<"Enter the length of the array: ";
+	cin>>n;
+	for(int i =0;i<n;i++){
+		cin>>arr[i];
+	}
+}
+int num = 0;
+void selection_sort::sort(){
+	for(int i =1;i<n;i++){
+		for(int j=0;j<=i;j++){
+			if(arr[j]>arr[i]){
+				insert(i,j);
+				cout<<"Pass "<<num++<<" - ";
+				s.display();
+			}
+		}
+	}
+}
+void selection_sort::display(){
+	cout<<"Sorted array: ";
+	for(int i = 0; i<n;i++){
+		cout<<arr[i]<<" ";
+	}
+	cout<<endl;
+}
+
+int main(){
+	s.input_data();
 	s.sort();
 	s.display();
 	return 0;
@@ -536,3 +611,5 @@ int main(){
 	return 0;
 }
 ```
+
+
