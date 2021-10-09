@@ -432,7 +432,7 @@ public:
 	inflix_2_postflix(){
 		opening_brackets = "({[";
 		closing_brackets = ")}]";
-		operators = "+-/*^";
+		operators = "+-/*^%";
 		top = -1;
 		top1 = -1;
 		incorrect = false;
@@ -448,7 +448,7 @@ inflix_2_postflix ip;
 int inflix_2_postflix::precedence(char operato){
 	if(operato == '^')
 		return 3;
-	else if (operato == '*' || operato == '/')
+	else if (operato == '*' || operato == '/' || operato == '%')
 		return 2;
 	else if (operato == '+' || operato == '-')
 		return 1;
@@ -507,7 +507,7 @@ void inflix_2_postflix::parenthesis(char input){
 	}
 }
 int inflix_2_postflix::signs(char input){
-	for(int i = 0 ; i<5;i++){
+	for(int i = 0 ; i<operators.length();i++){
 		if(input == operators[i]){
 			return 1;
 		}
@@ -516,20 +516,30 @@ int inflix_2_postflix::signs(char input){
 }
 void inflix_2_postflix::input_data(){
 	cout<<"Enter the Expression: \n";
-	// user_input = "A^B*C–D+E/F/(G+H)";
+	user_input = "A^B*C-D+E/F/(G+H)";
 	// user_input = "((A+B)*C–(D–E))^(F+G)";
-	user_input = "A–B/(C*D^E)";
+	// user_input = "A–B/(C*D^E)";
 	// user_input = "(a+b^c^d)*(e+f/d))";
 	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
 	// user_input = "(A – B) / ((D + E) * F)";
 	// user_input = "((A + B) / D) ^((E – F) * G)";
+	user_input = "H^(J+K)*I%S";
+	// user_input = "A%(C-D)+B*E";
 
 	// cin>>user_input;
 }
 void inflix_2_postflix::convert(){
 	for(int i = 0; i<user_input.length();i++){
 		ip.parenthesis(user_input[i]);
-		
+		 cout<<user_input[i]<<"\t\t";
+		 for(int z = 0 ;z<top;z++){
+		 	cout<<simple_stack[z];
+		 }
+		 cout<<"\t\t";
+		 for(int a = 0;a<top1;a++){
+		 	cout<<Postflix[a];
+		 }
+		 cout<<endl;
 	}
 	if(!incorrect){
 		cout<<"Postflix : ";
@@ -555,7 +565,7 @@ int main(){
 
 using namespace std;
 const int Max = 1000;
-class inflix_2_postflix{
+class inflix_2_preflix{
 	char Preflix[Max];
 	char simple_stack[Max];
 	int top,top1;
@@ -565,10 +575,10 @@ class inflix_2_postflix{
 	string closing_brackets;
 	string operators;
 public: 
-	inflix_2_postflix(){
+	inflix_2_preflix(){
 		closing_brackets = "({[";
 		opening_brackets = ")}]";
-		operators = "+-/*^";
+		operators = "+-/*^%";
 		top = -1;
 		top1 = -1;
 		incorrect = false;
@@ -579,12 +589,12 @@ public:
 	void convert();
 	int precedence(char operato);
 };
-inflix_2_postflix ip;
+inflix_2_preflix ip;
 
-int inflix_2_postflix::precedence(char operato){
+int inflix_2_preflix::precedence(char operato){
 	if(operato == '^')
 		return 3;
-	else if (operato == '*' || operato == '/')
+	else if (operato == '*' || operato == '/' || operato == '%')
 		return 2;
 	else if (operato == '+' || operato == '-')
 		return 1;
@@ -592,7 +602,7 @@ int inflix_2_postflix::precedence(char operato){
 		return 0;
 	}
 }
-void inflix_2_postflix::parenthesis(char input){
+void inflix_2_preflix::parenthesis(char input){
 	for(int i = 0 ; i<3;i++){
 		if(input == opening_brackets[i]){
 			simple_stack[++top] = input;
@@ -641,15 +651,15 @@ void inflix_2_postflix::parenthesis(char input){
 		}
 	}
 }
-int inflix_2_postflix::signs(char input){
-	for(int i = 0 ; i<5;i++){
+int inflix_2_preflix::signs(char input){
+	for(int i = 0 ; i<operators.length();i++){
 		if(input == operators[i]){
 			return 1;
 		}
 	}
 	return 0;
 }
-void inflix_2_postflix::input_data(){
+void inflix_2_preflix::input_data(){
 	cout<<"Enter the Expression: \n";
 	// user_input = "A^B*C–D+E/F/(G+H)";
 	// user_input = "((A+B)*C–(D–E))^(F+G)";
@@ -657,18 +667,22 @@ void inflix_2_postflix::input_data(){
 	// user_input = "(a+b^c^d)*(e+f/d))";
 	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
 	user_input = "(A–B)/((D+E)*F)";
+	user_input = "A+B-C";
+	user_input = "H^(J+K)*I%S";
+	// user_input = "A%(C-D)+B*E";
+
 	// user_input = "((A + B) / D) ^((E – F) * G)";
 
 	// cin>>user_input;
 }
-void inflix_2_postflix::convert(){
+void inflix_2_preflix::convert(){
 	for(int i =user_input.length()-1; i>-1;i--){
 		ip.parenthesis(user_input[i]);
 		
 	}
 	if(!incorrect){
 		cout<<"Preflix : ";
-		for(int j = top;j>-1;j--){
+		for(int j = 0;j<=top;j++){
 			cout<<simple_stack[j];
 		}
 		for(int i =top1;i>-1;i--){
