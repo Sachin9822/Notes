@@ -493,10 +493,15 @@ void inflix_2_postflix::parenthesis(char input){
 			if(precedence(simple_stack[top]) < precedence(input)){
 			simple_stack[++top] = input;
 			}
+
 			else{
 				Postflix[++top1] = simple_stack[top--];
-				simple_stack[++top] = input;
-
+				simple_stack[++top] = input;		
+				if(precedence(simple_stack[top])==precedence(simple_stack[top-1])){
+					Postflix[++top1] = simple_stack[top-1];
+					simple_stack[top-1] = simple_stack[top];
+					top -=1;
+				}
 			}
 			break;
 		}
@@ -519,29 +524,19 @@ int inflix_2_postflix::signs(char input){
 void inflix_2_postflix::input_data(){
 	cout<<"Enter the Expression: \n";
 	user_input = "A^B*C-D+E/F/(G+H)";
-	// user_input = "((A+B)*C–(D–E))^(F+G)";
-	// user_input = "A–B/(C*D^E)";
-	// user_input = "(a+b^c^d)*(e+f/d))";
-	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
-	// user_input = "(A – B) / ((D + E) * F)";
-	// user_input = "((A + B) / D) ^((E – F) * G)";
-	user_input = "H^(J+K)*I%S";
-	// user_input = "A%(C-D)+B*E";
+	user_input = "((A+B)*C-(D-E))^(F+G)";
+	user_input = "A-B/(C*D^E)";
+	user_input = "(a+b^c^d)*(e+f/d))";
+	user_input = "3-6*7+2/4*5-8";
+	user_input = "(A-B)/((D+E)*F)";
+	user_input = "((A+B)/D)^((E-F)*G)";
+
 
 	// cin>>user_input;
 }
 void inflix_2_postflix::convert(){
 	for(int i = 0; i<user_input.length();i++){
 		ip.parenthesis(user_input[i]);
-		 cout<<user_input[i]<<"\t\t";
-		 for(int z = 0 ;z<top;z++){
-		 	cout<<simple_stack[z];
-		 }
-		 cout<<"\t\t";
-		 for(int a = 0;a<top1;a++){
-		 	cout<<Postflix[a];
-		 }
-		 cout<<endl;
 	}
 	if(!incorrect){
 		cout<<"Postflix : ";
@@ -641,6 +636,11 @@ void inflix_2_preflix::parenthesis(char input){
 			else{
 				Preflix[++top1] = simple_stack[top--];
 				simple_stack[++top] = input;
+				if(precedence(simple_stack[top])==precedence(simple_stack[top-1])){
+					Preflix[++top1] = simple_stack[top-1];
+					simple_stack[top-1] = simple_stack[top];
+					top -=1;
+				}
 
 			}
 			break;
@@ -663,18 +663,13 @@ int inflix_2_preflix::signs(char input){
 }
 void inflix_2_preflix::input_data(){
 	cout<<"Enter the Expression: \n";
-	// user_input = "A^B*C–D+E/F/(G+H)";
-	// user_input = "((A+B)*C–(D–E))^(F+G)";
+	user_input = "A^B*C-D+E/F/(G+H)";
+	user_input = "((A+B)*C–(D–E))^(F+G)";
 	user_input = "A-B/(C*D^E)";
-	// user_input = "(a+b^c^d)*(e+f/d))";
-	// user_input = "3 – 6 * 7 + 2 / 4 * 5 – 8";
-	user_input = "(A–B)/((D+E)*F)";
-	user_input = "A+B-C";
-	user_input = "H^(J+K)*I%S";
-	// user_input = "A%(C-D)+B*E";
-
-	// user_input = "((A + B) / D) ^((E – F) * G)";
-
+	user_input = "(a+b^c^d)*(e+(f/d))";
+	user_input = "3-6*7+2/4*5-8";
+	user_input = "(A-B)/((D+E)*F)";
+	user_input = "((A+B)/D)^((E-F)*G)";
 	// cin>>user_input;
 }
 void inflix_2_preflix::convert(){
