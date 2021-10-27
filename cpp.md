@@ -315,16 +315,18 @@ void insertion_sort::input_data(){
 int num = 1;
 void insertion_sort::sort(){
 	// find the smallest element in the array
-	int smallest = arr[0];
-	int n1;
+	int n1,smallest=arr[0];
 	for(int i = 0; i<n;i++){
+	    smallest = arr[i];
 		for(int j = i;j<n;j++){
-			if(arr[j]<smallest){
+			if(smallest>arr[j]){
 				smallest = arr[j];
 				n1 = j;
-			}
+                cout<<"smallest: "<<smallest;
+			}else
+			n1 = i;
 		}
-			smallest = arr[i];
+			
 			insert(n1,i);
 			n1 = i;
 			cout<<"Pass "<<num++<<" - ";
@@ -346,6 +348,8 @@ int main(){
 	s.display();
 	return 0;
 }
+
+
 ```
 
 ## Matching Parenthesis
