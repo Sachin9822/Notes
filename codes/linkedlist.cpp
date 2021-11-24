@@ -1,4 +1,3 @@
-#include <cstddef>
 #include<iostream>
 
 using namespace std;
@@ -20,13 +19,63 @@ class Linkedlist{
 	}
 	void sort();
 	void reverse_ll(Node *pointer);
+	void split();
+	void merge();
+	void reverse_link();
 	void reverse();
 	void createlist();
 	void insert_node();
 	void find_node();
 	void display();
 	void delete_node();
+	void setHead(Node *o){
+		head = o;
+	}
+	Node* gethead(){
+		return head;
+	}
 };
+
+Linkedlist secondlist;
+
+void Linkedlist::merge(){
+	Node *temp;
+	temp = head;
+	while(temp->next != NULL){
+		temp = temp->next;
+	}
+	temp->next = secondlist.gethead();
+	secondlist.setHead(NULL);
+}
+
+void Linkedlist::split(){
+	int position;
+	Node *second;
+	Node *temp;
+	cout<<"Enter the position to split: ";
+	cin>>position;
+	temp = head;
+	for(int i = 1 ;i<position;i++){
+		temp= temp->next;	
+	}
+	second = temp->next;
+	temp->next = NULL;
+	secondlist.setHead(second);
+}
+
+void Linkedlist::reverse_link(){
+	Node *x,*current,*prev;
+	current = prev = NULL;
+	current = head;
+	while(current != NULL){
+		x = current->next;
+		current->next = prev;
+		prev = current;
+		current = x;
+	}
+	head = prev;
+	cout<<"\n\nReversed List Successfully !!!!!!!!!\n\n";
+}
 
 void swap(Node *one,Node *two){
 	int temp;
@@ -123,6 +172,7 @@ void Linkedlist::insert_node(){
 	cout<<"Enter the data : ";
 	cin>>x;
 	nnode->data = x;
+	nnode->next = NULL;
 	cout<<"\n\n\n\n1: Insert at begining\n2: Insert at End\n3:Insert at any position\n";
 	cin>>a;
 	if(a==1){
@@ -131,7 +181,8 @@ void Linkedlist::insert_node(){
 	}
 	else{
 		if(a==2){
-			pos = x-1;
+			temp->next = nnode;
+			return;
 		}
 		else if(a==3){
 			temp = head;
@@ -199,7 +250,7 @@ int main(){
 	int user_input;
 	bool exit = false;
 	while(!exit){
-		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n5: reverse Linkedlist\n6: sort\n7: exit\n";
+		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n5: print reverse \n6: sort\n7: reverse Linkedlist \n8: split\n9: merge\n10: exit\n";
 		cin>>user_input;
 		if(user_input == 1){
 			L.createlist();
@@ -208,7 +259,10 @@ int main(){
 			L.insert_node();
 		}
 		else if (user_input == 3) {
+			cout<<"\nLinkedlist 1: ";
 			L.display();
+			cout<<"\nLinkedlist 2: ";
+			secondlist.display();
 		}
 		else if (user_input == 4) {
 			L.delete_node();
@@ -220,6 +274,15 @@ int main(){
 			L.reverse();
 		}
 		else if(user_input == 7){
+			L.reverse_link();
+		}
+		else if(user_input == 8){
+			L.split();
+		}
+		else if(user_input == 9){
+			L.merge();
+		}
+		else if(user_input == 10){
 			exit = true;
 		}
 		else {
@@ -228,4 +291,3 @@ int main(){
 	}
 	return 0;
 }
-
