@@ -124,17 +124,20 @@ void Linkedlist::reverse_ll(Node *pointer){
 void Linkedlist::delete_node(){
 	int pos;
 	Node *temp;
-	Node *temp2;
+	Node *temp2,*prevNode;
 	temp = head;
 	while(temp->next != NULL){
 		x++;
 		temp = temp->next;
 	}
+	cout<<"x : "<<x<<endl;
 	cout<<"1: Delete at the begining\n2: Delete at the end\n3: Delete at any position\n";
 	int a;
 	cin>>a;
 	if(a == 1){
+		prevNode = head;
 		head = head->next;
+		delete prevNode;
 	}
 	else{
 		if(a == 2){
@@ -157,6 +160,7 @@ void Linkedlist::delete_node(){
 		}
 		temp2 = temp->next;
 		temp->next = temp2->next;
+		delete temp2;
 	}
 }
 
