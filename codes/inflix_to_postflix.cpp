@@ -1,6 +1,8 @@
+#include <cctype>
 #include <cstdlib>
 #include <iostream>
 #include <bits/stdc++.h>
+#include <string>
 
 using namespace std;
 const int Max = 1000;
@@ -28,17 +30,20 @@ public:
 	int signs(char input);
 	void convert();
 	int precedence(char operato);
-	void evaluate();
+	string evaluate();
 };
 inflix_2_postflix ip;
 
-void inflix_2_postflix::evaluate(){
+string inflix_2_postflix::evaluate(){
 	int top3=-1;
 	int evaluate_ans[20];
 	/* char ans[] = {"+","+","2","6","+","-","13","2","4"}; */
-ans = "35+64-*41-2^+";
+/* ans = " 3 5 + 6 4 - * 4 1 - 2 ^ +"; */
 	for(int i = 0 ;i<ans.length();i++){			
-		if(ans[i]=='+'){
+		if(isspace(ans[i])){
+			continue;
+		}
+		else if(ans[i]=='+'){
 			evaluate_ans[top3-1]=evaluate_ans[top3-1]+evaluate_ans[top3];
 			top3 --;
 		}
@@ -66,10 +71,13 @@ ans = "35+64-*41-2^+";
 			top3 --;
 		}
 		else{
+			if(isalpha(ans[i])){
+				return "Expression contains alphabets \n";
+			}
 			evaluate_ans[++top3]=(int)(ans[i]-'0');
 		}
 	}
-		cout<<"Evaluated ans: "<<evaluate_ans[0]<<endl;
+		return "Evaluated ans: "+to_string(evaluate_ans[0]);
 }
 
 
@@ -84,17 +92,18 @@ int inflix_2_postflix::precedence(char operato){
 		return 0;
 	}
 }
-void inflix_2_postflix::parenthesis(char input){
 
+void inflix_2_postflix::parenthesis(char input){
 	for(int i = 0 ; i<3;i++){
-		if(input == opening_brackets[i]){
+		if(isspace(input)){
+			break;
+		}
+		else if(input == opening_brackets[i]){
 			simple_stack[++top] = input;
 			break;
 		}
 		else if(input == closing_brackets[i]){
 			if(top > -1){
-// (+
-
 				for(int z = top; z>-1;z--){
 					if(simple_stack[z]==opening_brackets[i]){
 						top -=1;
@@ -107,7 +116,6 @@ void inflix_2_postflix::parenthesis(char input){
 						
 					}
 				}
-
 			}
 			else{
 				cout<<"Invalid Expression \n";
@@ -119,7 +127,6 @@ void inflix_2_postflix::parenthesis(char input){
 			if(precedence(simple_stack[top]) < precedence(input)){
 			simple_stack[++top] = input;
 			}
-
 			else{
 				Postflix[++top1] = simple_stack[top--];
 				simple_stack[++top] = input;		
@@ -139,6 +146,7 @@ void inflix_2_postflix::parenthesis(char input){
 		}
 	}
 }
+
 int inflix_2_postflix::signs(char input){
 	for(int i = 0 ; i<operators.length();i++){
 		if(input == operators[i]){
@@ -147,19 +155,19 @@ int inflix_2_postflix::signs(char input){
 	}
 	return 0;
 }
+
 void inflix_2_postflix::input_data(){
 	cout<<"Enter the Expression: \n";
-	user_input = "A^B*C-D+E/F/(G+H)";
+	user_input = "A ^ B * C - D + E / F / ( G+ H )";
 	// user_input = "((A+B)*C-(D-E))^(F+G)";
-	user_input = "A-B/(C*D^E)";
-	user_input = "(a+b^c^d)*(e+f/d))";
-	user_input = "3-6*7+2/4*5-8";
+	/* user_input = "A-B/(C*D^E)"; */
+	/* user_input = "(a+b^c^d)*(e+f/d))"; */
+	/* user_input = "3 - 6 * 7 + 2 / 4 * 5 - 8"; */
 	// user_input = "(A-B)/((D+E)*F)";
 	// user_input = "((A+B)/D)^((E-F)*G)";
-
-
 	// cin>>user_input;
 }
+
 void inflix_2_postflix::convert(){
 	string temp = "";
 	for(int i = 0; i<user_input.length();i++){
@@ -187,7 +195,7 @@ int main(){
 	cout<<"1: Evaluate \n2: exit\n";
 	cin>>i;
 	if(i == 1){
-		ip.evaluate();
+		cout<<ip.evaluate()<<endl;
 	}
 	else if (i == 2){
 		exit(0);
