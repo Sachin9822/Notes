@@ -26,70 +26,16 @@ class LinkedList{
 			return nnode;
 		}
 		void insertNode(){
-			int x,pos;
 			Node *temp = head;
 			if (head == NULL){
 				head = createNode();
 			}
 			else{
-				cout<<"\n1: insert at end\n2: insert at any position\n3: insert at begining\n";
-				cin>>x;
-				if(x == 1){
-					while(temp->next != NULL){
-						temp = temp->next;
-					}
-					temp->next = createNode();
-					temp->next->prev = temp;
-				}
-				else if(x == 2){
-				auto nnode = createNode();
-					cout<<"enter the position : ";
-					cin>>pos;
-					for(int i = 1;i<pos-1;i++){
-						temp = temp->next;
-					}
-					nnode->next = temp->next;
-					temp->next->prev = nnode;
-					temp->next = nnode;
-					nnode->prev = temp;
-				}
-				else if(x == 3){
-				auto nnode = createNode();
-					nnode->next = head;
-					head->prev = nnode;
-					head = nnode;
-				}
-			}
-		}
-		void deleteNode(){
-			int x,pos;
-			Node *temp=head,*prevNode;
-			cout<<"\n1: delete at end\n2: delete at any position\n3: delete at begining\n";
-			cin>>x;
-			if(x == 1){
 				while(temp->next != NULL){
 					temp = temp->next;
 				}
-				cout<<"data : "<<temp->data<<endl;
-				prevNode = temp;
-				temp->prev->next = NULL;
-				delete prevNode;	
-			}
-			else if(x == 2){
-				cout<<"Enter the position : ";
-				cin>>pos;
-				for(int i = 1;i<pos-1;i++){
-					temp = temp->next;
-				}
-				prevNode = temp->next;
-				temp->next = temp->next->next;
+				temp->next = createNode();
 				temp->next->prev = temp;
-				delete prevNode;
-			}
-			else if(x == 3){
-				prevNode = head;
-				head = head->next;
-				head->prev = NULL;
 			}
 		}
 		void display(){
@@ -138,14 +84,7 @@ int main(){
 	L.display();
 	L.insertNode();
 	L.display();
-	L.insertNode();
-	L.display();
-	L.deleteNode();
-	L.display();
-	L.deleteNode();
-	L.display();
-	L.deleteNode();
-	L.display();
+	L.transverse();
 
 	return 0;
 }
