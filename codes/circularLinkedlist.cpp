@@ -26,11 +26,25 @@ class Linkedlist{
 
 Linkedlist secondlist;
 
-void swap(Node *one,Node *two){
-	int temp;
-	temp = one->data;
-	one->data = two->data;
-	two->data = temp;
+void Linkedlist::find_node(){
+	Node *temp = head;
+	int Fdata;
+	cout<<"Enter the data to search: ";
+	cin>>Fdata;
+	while(temp->next!=head){
+		if(temp->data == Fdata){
+			cout<<"\n!!! Item Found\n";
+			return;
+		}
+		temp = temp->next;
+	}
+	if(temp->data == Fdata){
+		cout<<"\n!!! Item Found\n";
+		return;
+	}
+	else{
+		cout<<"\n!!! item not found\n";
+	}
 }
 
 void Linkedlist::delete_node(){
@@ -49,13 +63,19 @@ void Linkedlist::delete_node(){
 	if(a == 1){
 		prevNode = head;
 		head = head->next;
+		Node *temp = prevNode;
+		while(temp->next!=prevNode){
+			temp = temp->next;
+		}
+		temp->next = head;
 		delete prevNode;
 	}
 	else{
 		if(a == 2){
 			temp = head;
-			for(int i = 1 ; i<x-1;i++){
+			for(int i = 0 ; i<x-1;i++){
 				temp = temp->next;
+				cout<<"data : "<<temp->data<<endl;
 			}
 			temp2 = temp->next;
 			temp->next = head;
@@ -181,7 +201,7 @@ int main(){
 	int user_input;
 	bool exit = false;
 	while(!exit){
-		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n0: exit\n";
+		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n5: find\n0: exit\n";
 		cin>>user_input;
 		if(user_input == 1){
 			L.createlist();
@@ -192,14 +212,15 @@ int main(){
 		else if (user_input == 3) {
 			cout<<"\nLinkedlist 1: ";
 			L.display();
-			cout<<"\nLinkedlist 2: ";
-			secondlist.display();
 		}
 		else if (user_input == 4) {
 			L.delete_node();
 		}
 		else if(user_input ==  0){
 			exit = true;
+		}
+		else if(user_input ==  5){
+			L.find_node();	
 		}
 		else {
 			cout<<"invalid input\n";
