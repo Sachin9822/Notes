@@ -116,41 +116,98 @@ class LinkedList{
 			}
 			cout<<temp->data<<endl;
 		}
+		void search(){
+			Node *temp = head;
+			int data_to_search;
+			cout<<"Enter the data to search : ";
+			cin>>data_to_search;
+			while(temp!=NULL){
+				if(temp->data == data_to_search){
+					cout<<"\nItem Found!!!\n";
+					return;
+				}
+				temp = temp->next;
+			}
+			cout<<"\nNot found\n\n";
+		}
 
-		/* void transverse(){ */
-			/* display(); */
-			/* Node *temp = head; */
-			/* bool exit=false; */
-			/* int x; */
-			/* while(!exit){ */
-			/* 	cout<<"Current Element : "<<temp->data<<endl; */
-			/* 	cout<<"\n1: Next\n2: Previous\n3: exit\n"; */
-			/* 	cin>>x; */
-			/* 	if(x == 1){ */
-			/* 		temp = temp->next; */
-			/* 	} */
-			/* 	else if(x == 2){ */
-			/* 		temp = temp->prev; */
-			/* 	} */
-			/* 	else if(x == 3){ */
-			/* 		exit = true; */
-			/* 	} */
-			/* 	if(temp== NULL){ */
-			/* 		cout<<"\nNULL\n"; */
-			/* 		temp = head; */ 
-			/* 	} */
-			/* } */
-		/* } */
+		void swap(Node *one,Node *two){
+			int temp;
+			temp = one->data;
+			one->data = two->data;
+			two->data = temp;
+		}
+		
+		void sort(){
+			int min;
+			Node *temp,*temp2;
+			temp = head;
+			while(temp->next!= NULL){
+				min = temp->data;
+				temp2 = temp;
+				while(temp2->next != NULL){
+					if(min>temp2->data){
+						min = temp2->data;
+						swap(temp,temp2);
+					}
+					temp2 = temp2->next;
+				}
+				if(min > temp2->data){
+					min = temp2->data;
+					swap(temp,temp2);
+				}
+				temp = temp->next;
+			}
+		}
+		void display_rev(Node *start){
+			if(start == NULL)
+				return;
+			display_rev(start->next);
+			cout<<start->data<<" ";
+		}
+		Node *get_head(){
+			return head;
+		}
+		void setHead(Node *Head){
+			head = Head;
+		}
+		void split();
+		void merge();
 
 };
+LinkedList secondlist;
 
+void LinkedList::merge(){
+	Node *temp;
+	temp = head;
+	while(temp->next != NULL){
+		temp = temp->next;
+	}
+	temp->next = secondlist.get_head();
+	secondlist.setHead(NULL);
+}
+
+void LinkedList::split(){
+	int position;
+	Node *second;
+	Node *temp;
+	cout<<"Enter the position to split: ";
+	cin>>position;
+	temp = head;
+	for(int i = 1 ;i<position;i++){
+		temp= temp->next;	
+	}
+	second = temp->next;
+	temp->next = NULL;
+	secondlist.setHead(second);
+}
 int main(){
 	
 	LinkedList L;
 	bool exit = false;
 	int inp;
 	while(!exit){
-		cout<<"1: Insert\n2: display\n3: delete\n4: exit\n";
+		cout<<"1: Insert\n2: display\n3: delete\n4: search\n5: sort\n6: print reverse\n7: split\n8: merge\n9: exit\n";
 		cin>>inp;
 		if(inp == 1){
 			int a;
@@ -161,15 +218,35 @@ int main(){
 			}
 		}
 		else if(inp == 2){
+			cout<<"LinkedList 1: ";
 			L.display();
+			cout<<"LinkedList 2: ";
+			secondlist.display();
 		}
 		else if(inp == 3){
 			L.delete_node();
 		}
 		else if(inp == 4){
-			exit = true;
+			L.search();
 		}
-		
+		else if(inp == 5){
+			L.sort();
+		}
+		else if(inp == 6){
+			Node *start = L.get_head();
+			cout<<"Reverse: ";
+			L.display_rev(start);
+			cout<<endl;
+		}	
+		else if(inp == 7){
+			L.split();
+		}
+		else if(inp == 8){
+			L.merge();
+		}
+		else if(inp == 9){
+			break;
+		}	
 	}
 
 	return 0;
