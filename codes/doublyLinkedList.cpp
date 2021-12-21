@@ -202,12 +202,11 @@ void LinkedList::split(){
 	secondlist.setHead(second);
 }
 int main(){
-	
 	LinkedList L;
 	bool exit = false;
 	int inp;
 	while(!exit){
-		cout<<"1: Insert\n2: display\n3: delete\n4: search\n5: sort\n6: print reverse\n7: split\n8: merge\n9: exit\n";
+		cout<<"1: Insert/create \n2: display\n3: delete\n4: search\n5: sort\n6: print reverse\n7: split\n8: merge\n9: exit\n";
 		cin>>inp;
 		if(inp == 1){
 			int a;

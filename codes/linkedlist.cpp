@@ -37,6 +37,20 @@ class Linkedlist{
 };
 
 Linkedlist secondlist;
+void Linkedlist::find_node(){
+	int s; 
+	cout<<"Enter the node to search: ";
+	cin>>s;
+	Node *temp = head;
+	while(temp!=NULL){
+		if(temp->data == s){
+			cout<<"\nFound\n";
+			return;
+		}
+		temp = temp->next;
+	}
+	cout<<"\nNot found\n";
+}
 
 void Linkedlist::merge(){
 	Node *temp;
@@ -122,6 +136,7 @@ void Linkedlist::reverse_ll(Node *pointer){
 }
 
 void Linkedlist::delete_node(){
+	x=0;
 	int pos;
 	Node *temp;
 	Node *temp2,*prevNode;
@@ -130,7 +145,6 @@ void Linkedlist::delete_node(){
 		x++;
 		temp = temp->next;
 	}
-	cout<<"x : "<<x<<endl;
 	cout<<"1: Delete at the begining\n2: Delete at the end\n3: Delete at any position\n";
 	int a;
 	cin>>a;
@@ -158,9 +172,7 @@ void Linkedlist::delete_node(){
 		for(int i = 1 ; i<pos-1;i++){
 			temp = temp->next;
 		}
-		temp2 = temp->next;
-		temp->next = temp2->next;
-		delete temp2;
+		temp->next = temp->next->next;
 	}
 }
 
@@ -169,10 +181,6 @@ void Linkedlist::insert_node(){
 	Node *nnode = new Node;
 	Node *temp;
 	temp = head;
-	while(temp->next != NULL){
-		x++;
-		temp = temp->next;
-	}
 	cout<<"Enter the data : ";
 	cin>>x;
 	nnode->data = x;
@@ -185,6 +193,9 @@ void Linkedlist::insert_node(){
 	}
 	else{
 		if(a==2){
+			while(temp->next!= NULL ){
+				temp = temp->next;
+			}
 			temp->next = nnode;
 			return;
 		}
@@ -192,16 +203,13 @@ void Linkedlist::insert_node(){
 			temp = head;
 			cout<<"Enter the position : ";
 			cin>>pos;
-			if(pos>0 && pos<=x){
-				x = 0;
-			}
-			else{
-				cout<<"Invalid position \n";
-				return;
-			}
 		}
 		for(int i = 1;i<pos-1;i++){
 			temp = temp->next;
+			if(temp == NULL){
+				cout<<"Invalid Position\n";
+				return;
+			}
 		}
 		nnode->next = temp->next;
 		temp->next = nnode;
@@ -237,11 +245,10 @@ void Linkedlist::display(){
 	cout<<"Values: ";
 	if(head != NULL){
 		temp = head;
-		while(temp->next != NULL){
+		while(temp != NULL){
 			cout<<temp->data<<" ";	
 			temp = temp->next;
 		}
-		cout<<temp->data<<endl;
 	}
 	else{
 		cout<<"Empty !!!!!!!!!!!!!!\n";
@@ -254,7 +261,7 @@ int main(){
 	int user_input;
 	bool exit = false;
 	while(!exit){
-		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n5: print reverse \n6: sort\n7: reverse Linkedlist \n8: split\n9: merge\n10: exit\n";
+		cout<<"\n\n\n\n\n1: Create list \n2: insert node \n3: display\n4: delete node\n5: print reverse \n6: sort\n7: reverse Linkedlist \n8: split\n9: merge\n10: search\n11: exit\n";
 		cin>>user_input;
 		if(user_input == 1){
 			L.createlist();
@@ -286,7 +293,9 @@ int main(){
 		else if(user_input == 9){
 			L.merge();
 		}
-		else if(user_input == 10){
+		else if(user_input == 10)
+			L.find_node();
+		else if(user_input == 11){
 			exit = true;
 		}
 		else {
