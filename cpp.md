@@ -14,6 +14,14 @@
 - [Preflix to inflix conversion](https://github.com/Sachin9822/Notes/blob/master/cpp.md#preflix-to-inflix)
 
 ---------------------------------------------------------------------
+* To remove duplicate 
+```c++
+string s = "sdaklj";
+unsorted_set<char> chars;
+for( auto a: s){
+	if(chars.insert(a).second) arr+=el;
+}
+```
 
 * To reverse a string:
 ````c++
