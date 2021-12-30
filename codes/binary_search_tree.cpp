@@ -1,111 +1,152 @@
+
 #include<iostream>
 
 using namespace std;
 
 class Node{
-	public:
-	int data;
-	Node *left,*right;
-	Node(){
-		left = right = NULL;
-	}
+  public:
+    int data;
+    Node *left,*right;
+    Node(){
+      left = right = NULL;
+    }
 };
 class BST{
-	Node* head;
-	public:
-	BST(){
-		head = NULL;
+  Node* head;
+  public:
+  BST(){
+    head = NULL;
+  }
+  void search(int value){
+    Node *temp = head;
+    while(temp != NULL){
+      if(value > temp->data){
+	if(temp->right == NULL){
+	  cout<<"\nNot found \n";
+	  return;
 	}
-	void search(int value){
-		Node *temp = head;
-		while(temp != NULL){
-		if(value > temp->data){
-			if(temp->right == NULL){
-				cout<<"\nNot found \n";
-				return;
-			}
-			temp = temp->right;
-		}
-		else if(value == temp->data){
-			cout<<"\nItem Found!!!!\n";
-			return;
-		}
-		else{
-			if(temp->left == NULL){
-				cout<<"\nNot Found\n";
-				return;
-			}
-			temp = temp->left;
-		}
-		}
+	temp = temp->right;
+      }
+      else if(value == temp->data){
+	cout<<"\nItem Found!!!!\n";
+	return;
+      }
+      else{
+	if(temp->left == NULL){
+	  cout<<"\nNot Found\n";
+	  return;
 	}
-	void take_input(){
-		if(head == NULL){
-			Node *nnode = new Node;
-			cout<<"Enter the data : ";
-			cin>>nnode->data;
-			head = nnode;
-		}
-		else{
-			Node *nnode = new Node;
-			cout<<"Enter the data: ";
-			cin>>nnode->data;
-			Node *temp=head;
-			while(temp != NULL){
-				if(nnode->data > temp->data){
-					if(temp->right == NULL){
-						temp->right = nnode;
-						break;
-					}
-					temp = temp->right;
-					
-				}
-				else{
-					if(temp->left == NULL){
-						temp->left = nnode;
-						break;
-					}
-					temp = temp->left;
-				}
-			}
-		}
+	temp = temp->left;
+      }
+    }
+  }
+  void create_bst(){
+    int count;
+    cout<<"how many values do you want to enter: ";
+    cin>>count;
+    for(int i = 0;i<count;i++){
+      Node *nnode = new Node;
+      cout<<"Enter the data : ";
+      cin>>nnode->data;
+      if(head == NULL){
+	head = nnode;
+      }
+      else {
+	Node *temp = head;
+	while(temp != NULL){
+	  if(nnode->data > temp->data){
+	    if(temp->right == NULL){
+	      temp->right = nnode;
+	      break;
+	    }
+	    temp = temp->right;
+
+	  }
+	  else{
+	    if(temp->left == NULL){
+	      temp->left = nnode;
+	      break;
+	    }
+	    temp = temp->left;
+	  }
+
 	}
-	Node *getHead(){
-		return head;
+      }
+    }
+  }
+  void insert(){
+    Node *nnode = new Node;
+    cout<<"Enter the data: ";
+    cin>>nnode->data;
+    Node *temp=head;
+    while(temp != NULL){
+      if(nnode->data > temp->data){
+	if(temp->right == NULL){
+	  temp->right = nnode;
+	  break;
 	}
-	void inorder(Node *next){
-		if(next == NULL){
-			return;
-		}
-		inorder(next->left);
-		cout<<next->data<<" ";
-		inorder(next->right);
+	temp = temp->right;
+
+      }
+      else if (nnode->data == temp->data) {
+      cout<<"Duplicate node\n";
+      return;
+      }
+      else{
+	if(temp->left == NULL){
+	  temp->left = nnode;
+	  break;
 	}
-	void decending(Node *next){
-		if(next == NULL)
-			return;
-		decending(next->right);
-		cout<<next->data<<" ";
-		decending(next->left);
-	}
+	temp = temp->left;
+      }
+    }
+  }
+  Node *getHead(){
+    return head;
+  }
+  void inorder(Node *next){
+    if(next == NULL){
+      return;
+    }
+    inorder(next->left);
+    cout<<next->data<<" ";
+    inorder(next->right);
+  }
+  void decending(Node *next){
+    if(next == NULL)
+      return;
+    decending(next->right);
+    cout<<next->data<<" ";
+    decending(next->left);
+  }
 };
 int main(){
-	BST b;
-	int times;
-	cout<<"how many values do you want to enter: ";
-	cin>>times;
-	for(int i = 0;i<times;i++)
-		b.take_input();
-	Node *head = b.getHead();
-	b.inorder(head);
-	cout<<endl;
-	b.decending(head);
-	cout<<"Enter the data to search: ";
-	int se;
-	cin>>se;
-	b.search(se);
-	cout<<"Enter the data to search: ";
-	cin>>se;
-	b.search(se);
-	return 0;
+  int user_input;
+  bool exit = false;
+  BST b;
+  while(!exit){
+    cout<<"1: create \n2: Insert\n3: print\n4: search\n5: exit\n";
+    cin>>user_input;
+    if(user_input == 1)
+      b.create_bst();
+    else if(user_input == 2)
+      b.insert();
+    else if(user_input == 3){
+      Node *head = b.getHead();
+      cout<<"inorder: ";
+      b.inorder(head);
+      cout<<"\n postorder: ";
+      b.decending(head);
+      cout<<endl;
+    }
+    else if(user_input == 4){
+      cout<<"Enter the data to search: ";
+      int se;
+      cin>>se;
+      b.search(se);
+    }
+    else if(user_input == 5)
+      exit = true;
+  }
+  return 0;
 }
