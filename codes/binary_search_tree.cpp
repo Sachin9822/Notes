@@ -40,6 +40,55 @@ class BST{
       }
     }
   }
+	void delete_node(){
+		int ele;
+		cout<<"Enter the element to delete : ";
+		cin>>ele;
+		Node *temp = head;
+				if(temp->data == ele){
+					cout<<"Deleted "<<temp->data<<endl;
+					if(temp->right != NULL){
+						head = temp->right;
+						return;
+					}
+					else {
+						head = temp->left;
+						return;
+					}
+				}
+		while(temp!=NULL){
+			if(temp->data>ele){
+				if(temp->right->data == ele){
+					cout<<"Deleted "<<temp->right->data<<endl;
+					if(temp->right->right != NULL){
+						temp->right = temp->right->right;
+						return;
+					}
+					else {
+						temp->right = temp->right->left;
+						return;
+					}
+				}
+				temp = temp->right;
+			}	
+			else if(temp->data<ele){
+				if(temp->left->data == ele){
+					cout<<"Deleted "<<temp->left->data<<endl;
+					if(temp->left->right != NULL){
+						temp->left = temp->left->right;
+						return;
+					}
+					else {
+						temp->left = temp->left->left;
+						return;
+					}
+				}
+				temp=temp->left;
+			}
+		}
+
+		
+	};
   void create_bst(){
     int count;
     cout<<"how many values do you want to enter: ";
@@ -145,6 +194,9 @@ int main(){
       cin>>se;
       b.search(se);
     }
+    else if(user_input == 6){
+			b.delete_node();
+		}
     else if(user_input == 5)
       exit = true;
   }
