@@ -1,5 +1,3 @@
-#include <cctype>
-#include <cstdlib>
 #include <iostream>
 #include <bits/stdc++.h>
 #include <string>
@@ -37,8 +35,6 @@ inflix_2_postflix ip;
 string inflix_2_postflix::evaluate(){
 	int top3=-1;
 	int evaluate_ans[20];
-	/* char ans[] = {"+","+","2","6","+","-","13","2","4"}; */
-/* ans = " 3 5 + 6 4 - * 4 1 - 2 ^ +"; */
 	for(int i = 0 ;i<ans.length();i++){			
 		if(isspace(ans[i])){
 			continue;
@@ -158,14 +154,7 @@ int inflix_2_postflix::signs(char input){
 
 void inflix_2_postflix::input_data(){
 	cout<<"Enter the Expression: \n";
-	user_input = "A ^ B * C - D + E / F / ( G+ H )";
-	// user_input = "((A+B)*C-(D-E))^(F+G)";
-	/* user_input = "A-B/(C*D^E)"; */
-	/* user_input = "(a+b^c^d)*(e+f/d))"; */
-	/* user_input = "3 - 6 * 7 + 2 / 4 * 5 - 8"; */
-	// user_input = "(A-B)/((D+E)*F)";
-	// user_input = "((A+B)/D)^((E-F)*G)";
-	// cin>>user_input;
+	cin>>user_input;
 }
 
 void inflix_2_postflix::convert(){
@@ -183,7 +172,6 @@ void inflix_2_postflix::convert(){
 			temp += simple_stack[j];
 		}
 		cout<<endl;
-		cout<<temp<<endl;
 		ans = temp;
 	}	
 }

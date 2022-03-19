@@ -39,6 +39,6 @@ class DFS{
 int main(){
 	DFS d;
 	d.input();
-	d.display(1);
+	d.display(2);
 	return 0;
 }

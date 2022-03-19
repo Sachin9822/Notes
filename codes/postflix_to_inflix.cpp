@@ -23,13 +23,13 @@ public:
 	}
 	void input(){
 		cout<<"Enter the Postflix expression: ";
-		// cin>>user_input;
-		user_input = "AB-*";
-		user_input = "ABC*-DE-F*G/H/+";
-		user_input = "AB+C/D*EF^-";
-		user_input = "ABC^-DE*FG+/+";
-		user_input = "ABC*-DE-F*G/H/+";
-		user_input = "AB+C/D*EF^-";
+		cin>>user_input;
+		/* user_input = "AB-*"; */
+		/* user_input = "ABC*-DE-F*G/H/+"; */
+		/* user_input = "AB+C/D*EF^-"; */
+		/* user_input = "ABC^-DE*FG+/+"; */
+		/* user_input = "ABC*-DE-F*G/H/+"; */
+		/* user_input = "AB+C/D*EF^-"; */
 	}
  	void convert();
  	void display(){

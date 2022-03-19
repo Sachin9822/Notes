@@ -22,8 +22,8 @@ public:
 		return false;
 	}
 	void input(){
-		cout<<"Enter the Postflix expression: ";
-		user_input = "+A*-*BC*/D^EFGH";
+		cout<<"Enter the Preflix expression: ";
+		cin>>user_input;
 	}
  	void convert();
  	void display(){
@@ -34,20 +34,10 @@ public:
 
 void preflix2inflix::convert(){
  		for(int i =user_input.length()-1;i>-1;i--){
- 		// 			cout<<"top : ";
- 		// 		for(int k = top;k>-1;k--){
- 		// 			cout<<arr[top-k]<<"  ";
- 		// 		}
- 		// 		cout<<endl;
- 		// 	cout<<"arr = ";
- 		// 	t.display();
- 			// cout<<"\n"<<user_input[i]<<endl;
- 			// cout<<endl;
  			if(operator_(user_input[i])){
  				if(top>0){
  				string temp = "("+arr[top]+user_input[i]+arr[top-1]+")";
  				arr[top---1] = temp;
- 				// cout<<"temp : "<<temp<<endl;
  				}
  				else
  					cout<<"empty\n";

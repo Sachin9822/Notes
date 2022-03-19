@@ -52,23 +52,27 @@ void Linkedlist::delete_node(){
 	Node *temp;
 	Node *temp2,*prevNode;
 	temp = head;
+	if(head->next == head){
+		head = NULL;
+	}
+	if(head == NULL){
+		cout<<"empty\n";
+		return;
+	}
 	while(temp->next != head){
 		x++;
 		temp = temp->next;
 	}
-	cout<<"x : "<<x<<endl;
 	cout<<"1: Delete at the begining\n2: Delete at the end\n3: Delete at any position\n";
 	int a;
 	cin>>a;
 	if(a == 1){
-		prevNode = head;
-		head = head->next;
-		Node *temp = prevNode;
-		while(temp->next!=prevNode){
+		temp = head;
+		while(temp->next != head){
 			temp = temp->next;
 		}
-		temp->next = head;
-		delete prevNode;
+		temp->next = head->next;
+		head = head->next;
 	}
 	else{
 		if(a == 2){
@@ -79,21 +83,17 @@ void Linkedlist::delete_node(){
 			}
 			temp2 = temp->next;
 			temp->next = head;
-			delete temp2;
 		}
 		else if(a == 3){
 			cout<<"Enter the position to delete node: ";
 			cin>>pos;
-			if(pos>0&&pos<=x){
-				x = 0;
-			}
-			else{
-				cout<<"Invalid position\n";
-				return;
-			}
 			temp = head;
 			for(int i = 1 ; i<pos-1;i++){
 				temp = temp->next;
+				if(temp==NULL){
+					cout<<"Empty\n";
+					return;
+				}
 			}
 			temp2 = temp->next;
 			temp->next = temp2->next;

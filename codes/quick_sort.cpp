@@ -6,23 +6,17 @@ class quick_sort{
 	int x;
 	public:
 	int partition(int LowerB,int upperB){
-		int pivot = arr[LowerB],temp;
-		int start = LowerB,end = upperB;
-		while(start<end){
-			while(arr[start]<=pivot)
-				start++;
-			while(arr[end]>pivot)
-				end--;
-			if(start<end){
-				temp = arr[start];
-				arr[start] = arr[end];
-				arr[end]= temp;
+		int pivot = arr[upperB];
+		int i = LowerB - 1;	
+
+		for(int j = LowerB;j<upperB;j++){
+			if(arr[j]<pivot){
+				i++;
+				swap(arr[j],arr[i]);
 			}
 		}
-		temp = arr[LowerB];
-		arr[LowerB] = arr[end];
-		arr[end] = temp;
-		return end;
+		swap(arr[i+1],arr[upperB]);
+		return upperB;
 	}
 	void sort(int start,int end){
 		int p;
